@@ -1,55 +1,42 @@
-import React, { Component } from 'react';
-import { actionTypes } from '../action';
-import { connect } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { reduceEachLeadingCommentRange } from 'typescript';
 
-class App extends Component {
-
-  constructor(props) {
-    super(props);
-    this.handleAddBtnClick = this.handleAddBtnClick.bind(this);
-    this.handleDeductBtnClick = this.handleDeductBtnClick.bind(this);
+const appState = {
+  head: {
+    text: 'Header',
+    color: 'red'
+  },
+  body: {
+    text: 'Body',
+    color: 'green'
   }
+}
 
-  handleAddBtnClick() {
-    const { dispatch } = this.props;
-    const action = {
-      type: actionTypes.ADD,
-      number: this.props.number
-    };
-    dispatch(action);
-  }
-
-  handleDeductBtnClick() {
-    const { dispatch } = this.props;
-    const action = {
-      type: actionTypes.DEDUCT,
-      number: this.props.number
-    };
-    dispatch(action);
-  }  
-
-  render(){
+class Header extends React.Component {
+  render() {  
     return (
-      <div className="App">
-      <header className="App-header">
-        <button onClick={this.handleAddBtnClick}>
-          Add 1
-        </button>
-        <button onClick={this.handleDeductBtnClick}>
-          Deduct 1
-        </button>        
-        <p>{ this.props.number }</p>
-      </header>
-    </div>      
+      <div>header</div>
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    number: state.number
-  };
-};
+class Body extends React.Component {
+  render() {
+    return (
+      <div>body</div>
+    );
+  }
+}
 
-export default connect(mapStateToProps)(App);
+class App extends React.Component {
+  render() {
+    return [
+      <Header />,
+      <Body />
+    ];
+  }
+}
+
+export default App;
 
