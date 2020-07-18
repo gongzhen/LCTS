@@ -1,11 +1,13 @@
 import express from "express";
-
+import connectDB from "./config/database";
 import * as lc146 from "./controllers/lc146";
 import * as lc1011 from "./controllers/lc1011";
 import * as lc621 from "./controllers/lc621";
 
 const app = express();
 const port = 5000;
+
+connectDB();
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
